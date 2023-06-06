@@ -27,7 +27,7 @@ namespace AlineTech.Linstagram.Api.Controllers
         [HttpGet("obter-publicacoes/{perfilId}")]
         public async Task<ActionResult> ObterPublicacao([FromRoute] Guid perfilId)
         {
-             var result = await _publicacaoService.ListarPublicacaoUsuario(perfilId);
+            var result = await _publicacaoService.ListarPublicacaoUsuario(perfilId);
             return Ok(result);
         }
 
@@ -36,6 +36,13 @@ namespace AlineTech.Linstagram.Api.Controllers
         {
             var mensagem = await _publicacaoService.DeletarPublicacao(publicacaoId);
             return Ok(mensagem.message);
+        }
+
+        [HttpGet("listar-publicacoes/{perfilId}")]
+        public async Task<ActionResult> Listar([FromRoute] Guid perfilId)
+        {
+            var result = await _publicacaoService.ListarPublicacaoFeed(perfilId);
+            return Ok(result);
         }
     }
 }

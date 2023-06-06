@@ -14,6 +14,11 @@ namespace AlineTech.Linstagram.Api.Infra.Repositories
             return await DbSet.Include(x => x.Perfil).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<List<Publicacao>> ObterPublicacoesComPerfil(Guid perfilId)
+        {
+            return await DbSet.Include(x => x.Perfil).Where(x => x.PerfilId != perfilId).ToListAsync(); 
+        }
+
         public async Task<int> ObterQuantidadePorPerfilId(Guid perfilId)
         {
             return await DbSet.CountAsync(_ => _.PerfilId == perfilId);

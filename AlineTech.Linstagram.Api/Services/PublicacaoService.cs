@@ -86,6 +86,12 @@ namespace AlineTech.Linstagram.Api.Services
             return (true, "Publicação deletada com sucesso!");
         }
 
+        public async Task<List<Publicacao>> ListarPublicacaoFeed(Guid perfilId)
+        {
+            var publicacoes = await _repository.ObterPublicacoesComPerfil(perfilId);
+            return publicacoes;
+        }
+
         public async Task<List<Publicacao>> ListarPublicacaoUsuario(Guid perfilId)
         {
             //{

@@ -6,5 +6,6 @@ namespace AlineTech.Linstagram.Api.Interfaces.Repositories
     {
         Task<int> ObterQuantidadePorPerfilId(Guid perfilId);
         Task<Publicacao> GetById(Guid id);
+        Task<List<Publicacao>> ObterPublicacoesComPerfil(Guid perfilId);
     }
 }
