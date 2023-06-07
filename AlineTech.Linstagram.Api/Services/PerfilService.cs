@@ -2,6 +2,7 @@
 using AlineTech.Linstagram.Api.Interfaces.Services;
 using AlineTech.Linstagram.Api.Models.Dtos;
 using AlineTech.Linstagram.Api.Models.Entitys;
+using AlineTech.Linstagram.Api.Models.Enuns;
 
 namespace AlineTech.Linstagram.Api.Services
 {
@@ -13,6 +14,32 @@ namespace AlineTech.Linstagram.Api.Services
         {
             _perfilRepository = perfilRepository;
         }
+
+        public async Task<(bool success, string message)> AlterarTemaPerfil(Guid perfilId)
+        {
+            var perfil = await _perfilRepository.BuscarPorId(perfilId);
+
+            if (perfil.Tema is null)
+            {
+                perfil.Tema = ETema.dark.ToString();
+            }
+            else
+            {
+                perfil.Tema = perfil.Tema == ETema.dark.ToString() ? ETema.light.ToString() : ETema.dark.ToString();
+            }
+
+            await _perfilRepository.Atualizar(perfil);
+
+            var save = await _perfilRepository.SaveChangesAsync();
+
+            if (save)
+            {
+                return (true, perfil.Tema);
+            }
+
+            return (false, "*Erro ao atualizar o tema!");
+        }
+
         public Task<(bool success, string message)> AtualizarPerfil(PerfilDto perfilDto)
         {
             throw new NotImplementedException();

@@ -88,7 +88,8 @@ namespace AlineTech.Linstagram.Api.Services
 
         public async Task<List<Publicacao>> ListarPublicacaoFeed(Guid perfilId)
         {
-            var publicacoes = await _repository.ObterPublicacoesComPerfil(perfilId);
+            //var publicacoes = await _repository.ObterPublicacoesComPerfil(perfilId);
+            var publicacoes = await _repository.BuscarAsync(x => x.PerfilId != perfilId);
             return publicacoes;
         }
 

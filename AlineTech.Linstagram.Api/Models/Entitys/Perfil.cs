@@ -12,5 +12,6 @@
         public int TipoPerfil { get; set; }
         public virtual Usuario? Usuario { get; set; }
         public virtual List<Publicacao>? Publicacaos { get; set; }
+        public string Tema { get; set; }
     }
 }

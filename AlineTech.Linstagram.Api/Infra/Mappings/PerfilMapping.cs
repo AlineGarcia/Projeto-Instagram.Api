@@ -21,6 +21,7 @@ namespace AlineTech.Linstagram.Api.Infra.Mappings
             builder.Property(x => x.Publicacoes).HasColumnType("int");
             builder.Property(x => x.TipoPerfil).HasColumnType("int");
             builder.HasMany(x => x.Publicacaos).WithOne(x => x.Perfil);
+            builder.Property(x => x.Tema).HasColumnType("varchar(5)");
         }
     }
 }

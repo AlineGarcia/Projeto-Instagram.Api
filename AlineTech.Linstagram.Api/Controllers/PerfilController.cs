@@ -38,5 +38,12 @@ namespace AlineTech.Linstagram.Api.Controllers
             var result = await _perfilService.ListarPerfilsUsuario(usuarioId);
             return Ok(result);
         }
+
+        [HttpPut("tema/{perfilId}")]
+        public async Task<ActionResult> AtualizarTema([FromRoute] Guid perfilId)
+        {
+            var(sucesso, mensagem) = await _perfilService.AlterarTemaPerfil(perfilId);
+            return Ok(mensagem);
+        }
     }
 }
