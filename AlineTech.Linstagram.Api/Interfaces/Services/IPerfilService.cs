@@ -11,5 +11,6 @@ namespace AlineTech.Linstagram.Api.Interfaces.Services
         Task<(bool success, string message)> AlterarTemaPerfil(Guid perfilId);
         Task<List<Perfil>> ListarPerfilsUsuario(Guid UsuarioId);
         Task<Perfil> ObterPerfilUsuario(Guid PerfilId);
+        Task<List<Perfil>> ListarTodosPerfils(Guid perfilId);
     }
 }

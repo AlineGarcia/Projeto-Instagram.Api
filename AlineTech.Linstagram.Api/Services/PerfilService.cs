@@ -61,6 +61,7 @@ namespace AlineTech.Linstagram.Api.Services
             perfil.NomeUsuario = perfilDto.NomeUsuario;
             perfil.Descricao = perfilDto.Descricao;
             perfil.TipoPerfil = perfilDto.TipoPerfil?? 0;
+            perfil.Tema = ETema.light.ToString();
 
 
             await _perfilRepository.Inserir(perfil);
@@ -89,6 +90,12 @@ namespace AlineTech.Linstagram.Api.Services
         {
             var perfil = await _perfilRepository.BuscarPorId(PerfilId);
             return perfil;
+        }
+
+        public async Task<List<Perfil>> ListarTodosPerfils(Guid perfilId)
+        {
+            var perfils = await _perfilRepository.BuscarAsync(x => x.Id != perfilId);
+            return perfils;
         }
     }
 }
